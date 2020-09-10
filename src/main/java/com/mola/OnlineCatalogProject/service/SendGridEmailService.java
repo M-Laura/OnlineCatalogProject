@@ -21,22 +21,6 @@ import java.io.IOException;
 @Slf4j
 public class SendGridEmailService {
 
-    private JavaMailSender javaMailSender;
-
-    @Autowired
-    public SendGridEmailService(JavaMailSender javaMailSender) {
-        this.javaMailSender = javaMailSender;
-    }
-
-    public void sendHTML(String from, String emailAddress, String please_confirm_account, String linkCreator) {
-        SimpleMailMessage mail = new SimpleMailMessage();
-        mail.setTo(emailAddress);
-        mail.setFrom(from);
-        mail.setSubject(please_confirm_account);
-        mail.setText(linkCreator);
-        javaMailSender.send(mail);
-    }
-
     @Autowired
     private SendGrid sendGridClient;
 
@@ -45,6 +29,17 @@ public class SendGridEmailService {
         this.sendGridClient = sendGridClient;
     }
 
+    public void sendText(String from, String to, String subject, String body) {
+        Response response = sendEmail(from, to, subject, new Content("text/plain", body));
+        log.info("Status Code: " + response.getStatusCode() + ", Body: " + response.getBody() + ", Headers: "
+                + response.getHeaders());
+    }
+
+    public void sendHTML(String from, String to, String subject, String body) {
+        Response response = sendEmail(from, to, subject, new Content("text/html", body));
+        log.info("Status Code: " + response.getStatusCode() + ", Body: " + response.getBody() + ", Headers: "
+                + response.getHeaders());
+    }
 
     public void sendHTML(String from, String[] to, String subject, String body) {
         Response response = sendEmail(from, to, subject, new Content("text/html", body));
@@ -67,8 +62,10 @@ public class SendGridEmailService {
         return response;
     }
 
+    // send to several receipients
     private Response sendEmail(String from, String[] to, String subject, Content content) {
         Mail mail = new Mail();
+
         mail.setFrom(new Email(from));
         mail.setSubject(subject);
         mail.addContent(content);
@@ -77,6 +74,7 @@ public class SendGridEmailService {
             personalization.addTo(new Email(recipient));
         }
         mail.addPersonalization(personalization);
+
         Request request = new Request();
         Response response = null;
         try {
