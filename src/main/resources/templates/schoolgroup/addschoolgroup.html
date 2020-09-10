@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <meta charset="UTF-8">
+    <nav th:insert="_menu.html::menu_nav">
+
+    </nav>
+    <title>Add School group</title>
+</head>
+<body>
+<div class="container">
+    <div class="form">
+        <div class="row">
+            <form th:action="@{/addschoolgroup}" th:object="${schoolgroup}" method="post">
+
+                <h1>Add School group</h1>
+                <p>Please fill in this form to create a group.</p>
+                <hr>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="group_name"><b>Name</b></label>
+                        <input th:field="*{groupName}" id="group_name" type="text" placeholder="Name" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+
+                        <input th:field="*{groupYear}" id="group_year" type="date" pattern="yyyy-MM-dd" required>
+                        <label for="group_year"><b>Group year</b></label>
+                    </div>
+                </div>
+                <button type="submit">Add</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
