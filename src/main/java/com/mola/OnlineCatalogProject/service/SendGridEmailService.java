@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 
 
-
 @Service
 @Slf4j
 public class SendGridEmailService {
@@ -37,57 +36,57 @@ public class SendGridEmailService {
         mail.setText(linkCreator);
         javaMailSender.send(mail);
     }
+
+    @Autowired
+    private SendGrid sendGridClient;
+
+    @Autowired
+    public SendGridEmailService(SendGrid sendGridClient) {
+        this.sendGridClient = sendGridClient;
+    }
+
+
+    public void sendHTML(String from, String[] to, String subject, String body) {
+        Response response = sendEmail(from, to, subject, new Content("text/html", body));
+        log.info("Status Code: " + response.getStatusCode() + ", Body: " + response.getBody() + ", Headers: "
+                + response.getHeaders());
+    }
+
+    private Response sendEmail(String from, String to, String subject, Content content) {
+        Mail mail = new Mail(new Email(from), subject, new Email(to), content);
+        Request request = new Request();
+        Response response = null;
+        try {
+            request.setMethod(Method.POST);
+            request.setEndpoint("mail/send");
+            request.setBody(mail.build());
+            response = this.sendGridClient.api(request);
+        } catch (IOException ex) {
+            log.error(ex.getMessage());
+        }
+        return response;
+    }
+
+    private Response sendEmail(String from, String[] to, String subject, Content content) {
+        Mail mail = new Mail();
+        mail.setFrom(new Email(from));
+        mail.setSubject(subject);
+        mail.addContent(content);
+        Personalization personalization = new Personalization();
+        for (String recipient : to) {
+            personalization.addTo(new Email(recipient));
+        }
+        mail.addPersonalization(personalization);
+        Request request = new Request();
+        Response response = null;
+        try {
+            request.setMethod(Method.POST);
+            request.setEndpoint("mail/send");
+            request.setBody(mail.build());
+            response = this.sendGridClient.api(request);
+        } catch (IOException ex) {
+            log.error(ex.getMessage());
+        }
+        return response;
+    }
 }
-//    @Autowired
-//    private SendGrid sendGridClient;
-//
-//    @Autowired
-//    public SendGridEmailService(SendGrid sendGridClient) {
-//        this.sendGridClient = sendGridClient;
-//    }
-//
-//
-//
-//    public void sendHTML(String from, String[] to, String subject, String body) {
-//        Response response = sendEmail(from, to, subject, new Content("text/html", body));
-//        log.info("Status Code: " + response.getStatusCode() + ", Body: " + response.getBody() + ", Headers: "
-//                + response.getHeaders());
-//    }
-//
-//    private Response sendEmail(String from, String to, String subject, Content content) {
-//        Mail mail = new Mail(new Email(from), subject, new Email(to), content);
-//        Request request = new Request();
-//        Response response = null;
-//        try {
-//            request.setMethod(Method.POST);
-//            request.setEndpoint("mail/send");
-//            request.setBody(mail.build());
-//            response = this.sendGridClient.api(request);
-//        } catch (IOException ex) {
-//            log.error(ex.getMessage());
-//        }
-//        return response;
-//    }
-//
-//    private Response sendEmail(String from, String[] to, String subject, Content content) {
-//        Mail mail = new Mail();
-//        mail.setFrom(new Email(from));
-//        mail.setSubject(subject);
-//        mail.addContent(content);
-//        Personalization personalization = new Personalization();
-//        for (String recipient : to) {
-//            personalization.addTo(new Email(recipient));
-//        }
-//        mail.addPersonalization(personalization);
-//        Request request = new Request();
-//        Response response = null;
-//        try {
-//            request.setMethod(Method.POST);
-//            request.setEndpoint("mail/send");
-//            request.setBody(mail.build());
-//            response = this.sendGridClient.api(request);
-//        } catch (IOException ex) {
-//            log.error(ex.getMessage());
-//        }
-//        return response;
-//    }
