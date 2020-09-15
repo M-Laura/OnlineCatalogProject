@@ -1,11 +1,15 @@
 package com.mola.OnlineCatalogProject.config;
 
+import com.mola.OnlineCatalogProject.model.Role;
 import com.mola.OnlineCatalogProject.model.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @AllArgsConstructor
 public class CustomUserDetails implements UserDetails {
@@ -19,8 +23,18 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<GrantedAuthority> authorities
+                = new ArrayList<>();
+        for (Role role: roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+            role.getPrivileges().stream()
+                    .map(p -> new SimpleGrantedAuthority(p.getRoleName()))
+                    .forEach(authorities::add);
+        }
+
+        return authorities;
     }
+
 
     @Override
     public String getPassword() {

@@ -13,22 +13,6 @@
     </nav>
 </head>
 <body>
-<div class="container">
-    <h1>Login</h1>
-    <div class="form">
-        <form th:action="@{/login}" method="post">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
 
-            <button type="submit" value="Login">Login</button>
-            <p>Not registered?
-                <a th:href="@{/register}">Register</a>
-            </p>
-
-        </form>
-    </div>
-</div>
 </body>
 </html>

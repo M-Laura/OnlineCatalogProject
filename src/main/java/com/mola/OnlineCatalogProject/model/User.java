@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
@@ -21,12 +23,16 @@ public class User {
 
     private String username; //nickname
     private String emailAddress;
-
     private String password;
+    private boolean enabled;
+    private boolean tokenExpired;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Role role;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Role role;
 
     @OneToOne(mappedBy = "user")
     private PendingUser pendingUser;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private List<Role> roles;
 }

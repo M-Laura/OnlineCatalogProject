@@ -28,19 +28,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/").permitAll()
-                .antMatchers( "/userValidation" ).permitAll()
-                .anyRequest().authenticated()
+//                .antMatchers("/login").permitAll()
+//                .antMatchers("/register").permitAll()
+//                .antMatchers("/").permitAll()
+//                .antMatchers( "/userValidation" ).permitAll()
+//                .anyRequest().authenticated()
+
+                .antMatchers("/index").permitAll()
+                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/student/**").access("hasRole('ROLE_STUDENT')")
+                .antMatchers("/professor/**").access("hasRole('ROLE_PROFESSOR')")
+
                 .and()
-                .formLogin()
-                .loginPage("/login").permitAll()
+                .formLogin().loginPage("/loginPage")
+                .defaultSuccessUrl("/homePage")
+                .failureUrl("/loginPage?error")
+                .usernameParameter("username").passwordParameter("password")
                 .and()
-                .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/")
-                .permitAll();
+                .logout().logoutSuccessUrl("/loginPage?logout");
     }
 
     @Override
