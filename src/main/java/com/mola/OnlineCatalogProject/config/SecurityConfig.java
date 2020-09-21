@@ -20,6 +20,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DatabaseUserDetailsService databaseUserDetailsService;
 
+
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder authenticationMgr) throws Exception {
+//        authenticationMgr.inMemoryAuthentication()
+//                .withUser("user").password("user").authorities("ROLE_USER")
+//                .and()
+//                .withUser("admin").password("admin").authorities("ROLE_USER","ROLE_ADMIN");
+//    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -28,16 +37,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-//                .antMatchers("/login").permitAll()
-//                .antMatchers("/register").permitAll()
-//                .antMatchers("/").permitAll()
-//                .antMatchers( "/userValidation" ).permitAll()
-//                .anyRequest().authenticated()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/register").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers( "/userValidation" ).permitAll()
 
-                .antMatchers("/index").permitAll()
-                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+
+//                .antMatchers("/index").permitAll()
+                .antMatchers("/admin**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/student/**").access("hasRole('ROLE_STUDENT')")
                 .antMatchers("/professor/**").access("hasRole('ROLE_PROFESSOR')")
+
+                .anyRequest().authenticated()
 
                 .and()
                 .formLogin().loginPage("/loginPage")

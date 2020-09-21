@@ -18,10 +18,6 @@ public class Role {
     private Integer roleId;
 
     private String roleName;
-    private String role = "ROLE_STUDENT";
-    private String role2 = "ROLE_PROFESSOR";
-    private String role3 = "ROLE_ADMIN";
-   
 
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
     private List<User> users;

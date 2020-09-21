@@ -7,19 +7,22 @@ import com.mola.OnlineCatalogProject.repository.UserRepository;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
 @Getter
 @Slf4j
 public class DatabaseUserDetailsService implements UserDetailsService {
-
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -31,16 +34,18 @@ public class DatabaseUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.info("Username " + username);
-        Optional<PendingUser> optional = pendingUserRepository.findByUsername(username);
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        log.info("Username " + userName);
+        Optional<PendingUser> optional = pendingUserRepository.findByUsername(userName);
 
-        if(optional.isPresent()) {
+        if (optional.isPresent()) {
             log.info(optional.get().getActivationCode());
-            throw new UsernameNotFoundException(username);
+            throw new UsernameNotFoundException(userName);
         }
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(()-> new UsernameNotFoundException(username));
+
+        User user = userRepository.findByEmail(userName)
+                .orElseThrow(() -> new UsernameNotFoundException("Email " + userName + " not found"));
         return new CustomUserDetails(user);
     }
+
 }

@@ -20,19 +20,28 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // start from 1  on each table
     private Integer userId;
+    private String username;
+//    @Column(name = "first_name")
+//    private String firstName;
+//
+//    @Column(name = "last_name")
+//    private String lastName;
 
-    private String username; //nickname
-    private String emailAddress;
+    private String email;
+
     private String password;
-    private boolean enabled;
-    private boolean tokenExpired;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private Role role;
+//    private boolean enabled;
+//    private boolean tokenExpired;
+//
 
     @OneToOne(mappedBy = "user")
     private PendingUser pendingUser;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private List<Role> roles;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private List<Role> roles;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Role role;
+
 }

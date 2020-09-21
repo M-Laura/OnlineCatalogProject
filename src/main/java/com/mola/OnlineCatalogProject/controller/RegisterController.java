@@ -45,9 +45,9 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public String registerUser(String username, String password, String emailAddress) {
+    public String registerUser(String username, String password, String email) {
         User user = new User();
-        user.setEmailAddress(emailAddress);
+        user.setEmail(email);
         user.setPassword(encoder().encode(password));
         user.setUsername(username);
 
@@ -56,7 +56,7 @@ public class RegisterController {
         String activationCode = randomStringGenerator.getAlphaNumericString(20);
         pendingUser.setActivationCode(activationCode);
         sendGridEmailService.sendHTML("testmail.java20@gmail.com",
-                user.getEmailAddress(), "Please confirm account",
+                user.getEmail(), "Please confirm account",
                 randomStringGenerator.linkCreator(activationCode,
                         "https://online-school-catalog-rg.herokuapp.com"));
         pendingUser.setUser(user);
