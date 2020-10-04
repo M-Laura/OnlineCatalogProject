@@ -24,7 +24,7 @@ public class SchoolUnitService {
     }
 
     public String findSchoolsByUnit(Integer id) {
-        //TODO: try catch / check if present
+
         return schoolUnitRepository.findById(id).get().getUnitName();
     }
 

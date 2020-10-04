@@ -4,6 +4,8 @@
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
+    <script type="text/javascript"
+            src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     <!-- Compiled and minified JavaScript -->
@@ -20,8 +22,8 @@
 <body>
 <div class="container">
     <h1>Students</h1>
-    <a th:href="@{/addstudent}">
-        <i class="small material-icons">add</i>
+    <a th:href="@{/{id}/addstudent(id=${schoolgroup.groupId})}" class="btn-floating pulse">
+        <i class="material-icons">add</i>
     </a>
     <table>
         <thead>
@@ -41,7 +43,7 @@
         <tbody th:each="s : ${students}">
 
         <tr>
-            <td th:text="${s.studentId}"></td>
+            <td th:text="${s.studentId}"></td> <!-- TODO counter ptr index -->
             <td th:text="${s.firstName}"></td>
             <td th:text="${s.lastName}"></td>
             <td>
@@ -49,12 +51,13 @@
                     <i class="small material-icons">create</i>
                 </a>
                 <a th:href="@{/deletestudent/{id}(id = ${s.studentId})}">
-                    <i class="small material-icons">delete</i>
+                    <i class="small material-icons" onclick="return  confirm('You are sure ?????')">delete</i>
                 </a>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
+
 </body>
 </html>

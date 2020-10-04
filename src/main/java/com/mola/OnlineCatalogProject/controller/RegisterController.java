@@ -1,8 +1,10 @@
 package com.mola.OnlineCatalogProject.controller;
 
 import com.mola.OnlineCatalogProject.model.PendingUser;
+import com.mola.OnlineCatalogProject.model.Role;
 import com.mola.OnlineCatalogProject.model.User;
 import com.mola.OnlineCatalogProject.repository.PendingUserRepository;
+import com.mola.OnlineCatalogProject.repository.RoleRepository;
 import com.mola.OnlineCatalogProject.repository.UserRepository;
 import com.mola.OnlineCatalogProject.service.RandomStringGenerator;
 import com.mola.OnlineCatalogProject.service.SendGridEmailService;
@@ -18,8 +20,6 @@ import java.util.Optional;
 
 @Controller
 public class RegisterController {
-
-    // TODO: create user service
 
     @Autowired
     private UserRepository userRepository;
@@ -50,6 +50,15 @@ public class RegisterController {
         user.setEmail(email);
         user.setPassword(encoder().encode(password));
         user.setUsername(username);
+
+//        Role role = new Role();
+//        role.setRoleName("ROLE_ADMIN");
+//        RoleRepository.save(role);
+//        user.setEmail("admin@admin.com");
+//        user.setPassword(passwordEncoderCLI().encode("admin"));
+//        user.setUsername("admin");
+//        user.setRole(role);
+//        userRepository.save(user);
 
         userRepository.save(user);
         PendingUser pendingUser = new PendingUser();

@@ -43,20 +43,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers( "/userValidation" ).permitAll()
 
 
-//                .antMatchers("/index").permitAll()
-                .antMatchers("/admin**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/student/**").access("hasRole('ROLE_STUDENT')")
-                .antMatchers("/professor/**").access("hasRole('ROLE_PROFESSOR')")
+                .antMatchers("/index").permitAll()
+//                .antMatchers("/admin**").access("hasRole('ROLE_ADMIN')")
+//                .antMatchers("/student/**").access("hasRole('ROLE_STUDENT')")
+//                .antMatchers("/professor/**").access("hasRole('ROLE_PROFESSOR')")
 
                 .anyRequest().authenticated()
 
                 .and()
-                .formLogin().loginPage("/loginPage")
-                .defaultSuccessUrl("/homePage")
-                .failureUrl("/loginPage?error")
-                .usernameParameter("username").passwordParameter("password")
+                .formLogin().loginPage("/login").permitAll()
+                .defaultSuccessUrl("/index")
+//                .failureUrl("/loginPage?error")
+
                 .and()
-                .logout().logoutSuccessUrl("/loginPage?logout");
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")
+                .permitAll();
     }
 
     @Override

@@ -23,11 +23,51 @@
     <nav th:insert="_menu.html::menu_nav">
     </nav>
 
-
 </head>
 <body>
+<div class="container">
+    <h1>School Units</s></h1>
+    <a th:href="@{/addschoolunit}" class="btn-floating pulse right">
+        <i class="material-icons">add</i>
+    </a>
+    <table>
+        <thead>
+        <tr>
+            <td>
+                School unit id
+            </td>
+            <td>
+                School unit name
+            </td>
+            <td>Action</td>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="s : ${schoolunits}">
+            <td th:text="${s.unitId}"></td>
+            <td>
+                <a
+                        th:text="${s.unitName}" th:href="@{/viewschoolunit/{id}(id = ${s.unitId})}">
+
+                </a>
+            </td>
+
+            <td>
+                <a th:href="@{/editschoolunit/{id}(id = ${s.unitId})}">
+                    <i class="small material-icons">create</i>
+                </a>
+
+                <a th:href="@{/deleteschoolunit/{id}(id = ${s.unitId})}">
+                    <i class="small material-icons" onclick="return  confirm('You are sure ?????')">delete</i>
+                </a>
 
 
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script type="text/javascript"
+            src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <title>Students view</title>
+
+    <nav th:insert="_menu.html::menu_nav">
+    </nav>
+</head>
+<body>
+<form>
+    <table class="highlight" border="1" align="center" cellpadding="10px">
+        <thead>
+        <tr>
+            <th rowspan = "2">Name</th>
+            <th colspan="4">1st Semester</th>
+            <th colspan="4">2nd Semester</th>
+            <th>Annual grade</th>
+        </tr>
+        <tr>
+            <th>Grade 1</th>
+            <th>Grade 2</th>
+            <th>Grade 3</th>
+            <th>Media</th>
+            <th>Grade 1</th>
+            <th>Grade 2</th>
+            <th>Grade 3</th>
+            <th>Media</th>
+            <th></th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+        <tr >
+            <td th:text="${student.firstName}" + th:text="${student.lastName}"></td>
+            <td> <input type="text" th:field="*{grade}"/></td>
+            <td><input type="text" th:field="*{grade}"/></td>
+            <td><input type="text" th:field="*{grade}"/></td>
+            <td></td>
+            <td><input type="text" th:field="*{grade}"/></td>
+            <td><input type="text" th:field="*{grade}"/></td>
+            <td><input type="text" th:field="*{grade}"/></td>
+            <td></td>
+            <td><input type="text" th:field="*{grade}"/></td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+
+</body>
+</html>

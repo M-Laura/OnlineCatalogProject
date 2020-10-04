@@ -19,11 +19,12 @@
 
     <meta charset="UTF-8">
     <title>Online Catalog</title>
-    <script >
+    <script>
      $(document).ready(function(){
      $('.slider').slider();
      });
-      </script>
+
+    </script>
 
 
     <nav th:insert="_menu.html::menu_nav">
@@ -65,7 +66,44 @@
         </li>
     </ul>
 </div>
+<!--<div class="container" >-->
+<!--    <div class="container" >-->
+<!--        <h1>Login</h1>-->
+<!--        <div class="form">-->
+<!--            <form th:action="@{/login}" method="post">-->
+<!--                <label for="username">Username</label>-->
+<!--                <input type="text" id="username" name="username" required>-->
+<!--                <label for="password">Password</label>-->
+<!--                <input type="password" id="password" name="password" required>-->
 
+<!--                <button type="submit" value="Login">Login</button>-->
+<!--                &lt;!&ndash;            <p>Not registered?&ndash;&gt;-->
+<!--                &lt;!&ndash;                <a th:href="@{/register}">Register</a>&ndash;&gt;-->
+<!--                &lt;!&ndash;            </p>&ndash;&gt;-->
+
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="container" >-->
+<!--        <h1>Register</h1>-->
+<!--        <div class="form">-->
+<!--            <form th:action="@{/register}" method="post">-->
+<!--                <label for="username">Username</label>-->
+<!--                <input type="text" id="username1" name="username" required>-->
+
+<!--                <label for="password">Password</label>-->
+<!--                <input type="password" id="password2" name="password" required>-->
+
+<!--                <label for="emailAddress">Email</label>-->
+<!--                <input type="email" id="emailAddress" name="emailAddress" required>-->
+
+<!--                <button type="submit" value="Register">Register</button>-->
+
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 
 <!--<div class="background-image" height="100" width="650">-->

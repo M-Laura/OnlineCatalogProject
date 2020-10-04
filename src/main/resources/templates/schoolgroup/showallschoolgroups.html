@@ -5,45 +5,56 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
     <!-- Compiled and minified JavaScript -->
+    <script type="text/javascript"
+            src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
     <meta charset="UTF-8">
+    <title>School group view</title>
+
     <nav th:insert="_menu.html::menu_nav">
-
     </nav>
-    <title>School groups</title>
-
 </head>
 <body>
 <div class="container">
-    <h1>School groups</h1>
+    <h1>School groups</s></h1>
     <a th:href="@{/addschoolgroup}">
         <i class="small material-icons">add</i>
     </a>
     <table>
         <thead>
         <tr>
-            <td>School group id</td>
-            <td>School group  name</td>
-            <td>School group year</td>
+            <td>
+                Group id
+            </td>
+            <td>
+                Group name
+            </td>
+            <td>
+                Group year
+            </td>
+            <td>Action</td>
         </tr>
         </thead>
-        <tbody th:each="s : ${schoolgroup}">
+        <tbody>
 
-        <tr>
-            <td th:text="${s.schoolgroupId}"></td>
-            <td th:text="${s.schoolgroupName}"></td>
-            <td th:text="${s.lastName}"></td>
+        <tr th:each="s : ${schoolgroups}">
+            <td th:text="${s.groupId}"></td>
+            <td th:text="${s.groupName}"></td>
+            <td th:text="${s.groupYear}"></td>
             <td>
-                <a th:href="@{/editstudent/{id}(id=${s.studentId})}">
+                <a th:href="@{/editschoolgroup/{id}(id = ${s.groupId})}">
                     <i class="small material-icons">create</i>
                 </a>
-                <a th:href="@{/deletestudent/{id}(id=${s.studentId})}">
+                <a th:href="@{/deleteschoolgroup/{id}(id = ${s.groupId})}">
                     <i class="small material-icons">delete</i>
+                </a>
+                <a th:href="@{/group/{id}/students(id = ${s.groupId})}">
+                    <i class="small material-icons">center_focus_strong</i>
                 </a>
             </td>
         </tr>

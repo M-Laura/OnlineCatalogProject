@@ -5,15 +5,18 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
     <!-- Compiled and minified JavaScript -->
+    <script type="text/javascript"
+            src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta charset="UTF-8">
-    <title>Professors</title>
-    <nav th:insert="_menu.html::menu_nav">
+    <title>Professor view</title>
 
+    <nav th:insert="_menu.html::menu_nav">
     </nav>
 </head>
 <body>
@@ -25,9 +28,16 @@
     <table>
         <thead>
         <tr>
-            <td>Professor id</td>
-            <td>Professor first name</td>
-            <td>Professor last name</td>
+            <td>
+                Professor id
+            </td>
+            <td>
+                Professor first name
+            </td>
+            <td>
+                Professor last name
+            </td>
+            <td>Action</td>
         </tr>
         </thead>
         <tbody th:each="p : ${professors}">
@@ -37,10 +47,10 @@
             <td th:text="${p.firstName}"></td>
             <td th:text="${p.lastName}"></td>
             <td>
-                <a th:href="@{/editprofessor/{id}(id=${p.professorId})}">
+                <a th:href="@{/editprofessor/{id}(id = ${p.professorId})}">
                     <i class="small material-icons">create</i>
                 </a>
-                <a th:href="@{/deleteprofessor/{id}(id=${p.professorId})}">
+                <a th:href="@{/deleteprofessor/{id}(id = ${p.professorId})}">
                     <i class="small material-icons">delete</i>
                 </a>
             </td>

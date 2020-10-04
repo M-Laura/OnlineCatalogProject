@@ -40,7 +40,7 @@ public class ProfessorController {
 //        System.out.println(student);
         professorService.save(professor);
         return "redirect:/allprofessors";
-        //TODO: show in same page on the left all students, on the right add a new student
+
     }
 
     @GetMapping("/editprofessor/{id}")
@@ -59,7 +59,7 @@ public class ProfessorController {
         professorService.save(professor); // save it again. SAVE acts as UPDATE
 //        return "redirect:/editstudent/"+id;
         return "redirect:/allprofessors";
-        //TODO: show in same page on the left all students, on the right add a new student
+
     }
 
     @GetMapping("/deleteprofessor/{id}")

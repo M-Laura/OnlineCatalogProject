@@ -25,7 +25,7 @@ public class SchoolGroupService {
     }
 
     public List<Student> findStudentsByGroup(Integer id) {
-        //TODO: try catch / check if present
+
         return schoolGroupRepository.findById(id).get().getStudents();
     }
 

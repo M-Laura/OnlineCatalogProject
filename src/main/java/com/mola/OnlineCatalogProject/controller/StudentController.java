@@ -32,48 +32,44 @@ public class StudentController {
         return "student/showallstudents";
     }
 
-    @GetMapping("/addstudent")
-    public String addStudent(Model model) {
-        model.addAttribute("schoolgroups", schoolGroupService.findAll());
-        model.addAttribute("student", new Student()); // initial bind with the form, to say to the webpage
-        // what is the type of student th:object
-
+    @GetMapping("/{id}/addstudent")//ruta care trebuie sa se regasesca in html
+    public String addStudent(Model model, @PathVariable Integer id) {
+        Student student = new Student();
+        model.addAttribute( "schoolgroup",
+                schoolGroupService.findById( id ));
+        student.setSchoolGroup( schoolGroupService.findById( id ) );
+        model.addAttribute( "student", student );
         return "student/addstudent";
     }
 
-    @PostMapping("/addstudent")
-    public String addStudent(@ModelAttribute Student student) {
-//        System.out.println(student);
-        studentService.save(student);
-        return "redirect:/allstudents";
-        //TODO: show in same page on the left all students, on the right add a new student
+    @PostMapping("/{id}/addstudent")
+    public String addStudent(@ModelAttribute Student student, @PathVariable Integer id) {
+        student.setSchoolGroup( schoolGroupService.findById( id ) );
+        studentService.save( student);
+        return "redirect:/group/"+id+"/students";
     }
 
     @GetMapping("/editstudent/{id}")
     public String editStudent(Model model, @PathVariable Integer id) {
         Student student = studentService.findById(id);
-
         model.addAttribute("student", student); // initial bind with the form, to say to the webpage
-        model.addAttribute("schoolgroups", schoolGroupService.findAll());
-        // what is the type of student th:object
-
         return "student/editstudent";
     }
 
     @PostMapping("/editstudent/{id}")
     public String editStudent(@ModelAttribute Student student, @PathVariable Integer id) {
-        System.out.println(student);
+        Student databaseStudent = studentService.findById( id );
+        databaseStudent.setFirstName( student.getFirstName() );
+        databaseStudent.setLastName( student.getLastName() );
+        studentService.save(databaseStudent);
+        return "redirect:/group/"+databaseStudent.getSchoolGroup().getGroupId()+"/students";
 
-        studentService.save(student); // save it again. SAVE acts as UPDATE
-//        return "redirect:/editstudent/"+id;
-        return "redirect:/allstudents";
-        //TODO: show in same page on the left all students, on the right add a new student
     }
 
     @GetMapping("/deletestudent/{id}")
     public String deleteStudent(@PathVariable Integer id) {
+        int groupId= studentService.findById( id ).getSchoolGroup().getGroupId();
         studentService.deleteById(id);
-
-        return "redirect:/allstudents"; // forward
+        return "redirect:/group/"+groupId+"/students";
     }
 }

@@ -5,23 +5,22 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
     <!-- Compiled and minified JavaScript -->
+    <script type="text/javascript"
+            src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta charset="UTF-8">
-    <nav th:insert="_menu.html::menu_nav">
-
-    </nav>
     <title>Add professor</title>
+    <nav th:insert="_menu.html::menu_nav">
+    </nav>
 </head>
 <body>
-<div>
-    <a th:href="@{/addprofessor}">
-        <i class="small material-icons">add</i>
-    </a>
-    <form th:action="@{/addprofessor}" th:object="${professor}" method="post">
+<div class="row">
+    <form class="col s12" th:action="@{/addprofessor}" th:object="${professor}" method="post">
         <div class="container">
             <h1>Add professor</h1>
             <p>Please fill in this form to create a professor.</p>
@@ -38,9 +37,10 @@
                     <input th:field="*{lastName}" id="last_name" type="text" placeholder="Last Name" required>
                 </div>
             </div>
-            <button type="submit" >Add</button>
+            <button type="submit">Add</button>
         </div>
     </form>
 </div>
+
 </body>
 </html>
