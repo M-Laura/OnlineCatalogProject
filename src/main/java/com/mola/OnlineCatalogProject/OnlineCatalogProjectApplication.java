@@ -48,15 +48,18 @@ public class OnlineCatalogProjectApplication implements CommandLineRunner {
         ) {
             pendingUserRepository.delete(p);
         }
-
-        for (User user : userRepository.findAll()
-        ) {
-            if (!user.getUsername().equals("test")) {
-//                user.setUsername("test");
-                user.setRole(roleRepository.findByRoleName("ROLE_USER").get());
-                userRepository.save(user);
-            }
-        }
+        User user = userRepository.findByUsername("laura").get();
+        user.setEmail("laura93.m@yahoo.com");
+        userRepository.save(user);
+//
+//        for (User user : userRepository.findAll()
+//        ) {
+//            if (!user.getUsername().equals("test")) {
+////                user.setUsername("test");
+////                user.setRole(roleRepository.findByRoleName("ROLE_USER").get());
+//                userRepository.save(user);
+//            }
+//        }
 
 //		User user = userRepository.findByUsername("test").get();
 //		user.setUsername("test");
