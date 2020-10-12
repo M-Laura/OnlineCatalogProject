@@ -35,15 +35,16 @@ public class OnlineCatalogProjectApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Role role = new Role();
-		role.setRoleName("ROLE_ADMIN");
-		roleRepository.save(role);
+//		Role role = new Role();
+//		role.setRoleName("ROLE_ADMIN");
+//		roleRepository.save(role);
 
-		User user = new User();
+		User user = userRepository.findByUsername("test").get();
 		user.setUsername("test");
+		user.setEmail("test@test.com");
 		user.setPassword(encoderGUI().encode("test"));
 
-		user.setRole(roleRepository.findByRoleName("ROLE_ADMIN").get());
+//		user.setRole(roleRepository.findByRoleName("ROLE_ADMIN").get());
 		userRepository.save(user);
 
 	}
