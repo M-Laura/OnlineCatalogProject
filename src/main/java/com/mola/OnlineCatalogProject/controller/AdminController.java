@@ -15,7 +15,7 @@ public class AdminController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("allusers")
+    @GetMapping("/admin")
     public String showAllStudents(Model model) {
 
         List<User> users = userRepository.findAll();
