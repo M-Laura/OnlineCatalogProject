@@ -19,7 +19,7 @@ public class OnlineCatalogProjectApplication implements CommandLineRunner {
 	private StudentRepository studentRepository;
 
 	@Bean
-	public BCryptPasswordEncoder encoder() {
+	public BCryptPasswordEncoder encoderGUI() {
 		return new BCryptPasswordEncoder();
 	}
 
@@ -41,7 +41,7 @@ public class OnlineCatalogProjectApplication implements CommandLineRunner {
 
 		User user = new User();
 		user.setUsername("test");
-		user.setPassword(encoder().encode("test"));
+		user.setPassword(encoderGUI().encode("test"));
 
 		user.setRole(roleRepository.findByRoleName("ROLE_ADMIN").get());
 		userRepository.save(user);
