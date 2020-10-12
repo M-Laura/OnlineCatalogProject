@@ -35,7 +35,7 @@ public class RegisterController {
 
     @GetMapping("/register")
     public String registerUser() {
-        return "security/register";
+        return "index";
     }
 
 
@@ -85,7 +85,7 @@ public class RegisterController {
 
             pendingUserRepository.delete(pendingUser);
         }
-        return "security/login";
+        return "index";
 
     }
 }
