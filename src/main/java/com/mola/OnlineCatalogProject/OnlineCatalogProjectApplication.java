@@ -40,9 +40,9 @@ public class OnlineCatalogProjectApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Role role = new Role();
-        role.setRoleName("ROLE_USER");
-        roleRepository.save(role);
+//        Role role = new Role();
+//        role.setRoleName("ROLE_USER");
+//        roleRepository.save(role);
 
         for (PendingUser p : pendingUserRepository.findAll()
         ) {
@@ -54,6 +54,7 @@ public class OnlineCatalogProjectApplication implements CommandLineRunner {
             if (!user.getUsername().equals("test")) {
 //                user.setUsername("test");
                 user.setRole(roleRepository.findByRoleName("ROLE_USER").get());
+                userRepository.save(user);
             }
         }
 
