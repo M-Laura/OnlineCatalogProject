@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -15,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -45,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/index").permitAll()
                 .antMatchers("/admin**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/edit**").access("hasRole('ROLE_ADMIN', 'ROLE_PROFESSOR')")
+                .antMatchers("/edit**").access("hasAnyRole('ROLE_ADMIN', 'ROLE_PROFESSOR')")
                 .antMatchers("/student**").access("hasRole('ROLE_STUDENT')")
 
 //                .antMatchers("/student/**").access("hasRole('ROLE_STUDENT')")

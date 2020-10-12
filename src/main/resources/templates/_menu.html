@@ -14,10 +14,7 @@
             <li><a th:href="@{/allschoolgroups}">School groups</a></li>
             <li><a th:href="@{/schedule}">Schedule</a></li>
             <li><a th:href="@{/upload}">Upload form</a></li>
-<!--            <sec:authorize ifAllGranted="ROLE_ADMIN">-->
-
-
-            <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" ><a th:href="@{/admin}">Admin</a></li>
+            <li sec:authorize="hasRole('ROLE_ADMIN')" ><a th:href="@{/admin}">Admin</a></li>
 
         </ul>
     </div>
@@ -31,7 +28,7 @@
 <!--        <sec:authorize ifAllGranted="ROLE_ADMIN">-->
 
 
-            <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" ><a th:href="@{/admin}">Admin</a></li>
+            <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin}">Admin</a></li>
 
     </ul>
 </nav>
