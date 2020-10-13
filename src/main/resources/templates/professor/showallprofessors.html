@@ -43,14 +43,14 @@
         <tbody th:each="p : ${professors}">
 
         <tr>
-            <td th:text="${p.professorId}"></td>
+            <td th:text="${p.id}"></td>
             <td th:text="${p.firstName}"></td>
             <td th:text="${p.lastName}"></td>
             <td>
-                <a th:href="@{/editprofessor/{id}(id = ${p.professorId})}">
+                <a th:href="@{/editprofessor/{id}(id = ${p.id})}">
                     <i class="small material-icons">create</i>
                 </a>
-                <a th:href="@{/deleteprofessor/{id}(id = ${p.professorId})}">
+                <a th:href="@{/deleteprofessor/{id}(id = ${p.id})}">
                     <i class="small material-icons">delete</i>
                 </a>
             </td>

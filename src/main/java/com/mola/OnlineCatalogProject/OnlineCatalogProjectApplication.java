@@ -1,6 +1,7 @@
 package com.mola.OnlineCatalogProject;
 
 import com.mola.OnlineCatalogProject.model.PendingUser;
+import com.mola.OnlineCatalogProject.model.Role;
 import com.mola.OnlineCatalogProject.model.User;
 import com.mola.OnlineCatalogProject.repository.PendingUserRepository;
 import com.mola.OnlineCatalogProject.repository.RoleRepository;
@@ -40,8 +41,9 @@ public class OnlineCatalogProjectApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 //		Role role = new Role();
-//        role.setRoleName("ROLE_USER");
-//        roleRepository.save(role);
+//      Role role = new Role();
+//      role.setRoleName("ROLE_USER");
+//      roleRepository.save(role);
 
         for (PendingUser p : pendingUserRepository.findAll()
         ) {
@@ -55,26 +57,22 @@ public class OnlineCatalogProjectApplication implements CommandLineRunner {
         user1.setEmailAddress("testmail.java20@gmail.com");
         userRepository.save(user1);
 
-//
 //        for (User user : userRepository.findAll()
 //        ) {
 //            if (!user.getUsername().equals("test")) {
 //               user.setUsername("test");
-//                user.setRole(roleRepository.findByRoleName("ROLE_USER").get());
-//                userRepository.save(user);
-//            }
-//        }
-
+//               user.setRole(roleRepository.findByRoleName("ROLE_USER").get());
+//
 //		User user = userRepository.findByUsername("test").get();
 //		user.setUsername("test");
-//		user.setEmail("test@test.com");
+//		user.setEmailAddress("test@test.com");
 //		user.setPassword(encoderGUI().encode("test"));
-//
+
+
 		user.setRole(roleRepository.findByRoleName("ROLE_ADMIN").get());
 		userRepository.save(user);
 
         user1.setRole(roleRepository.findByRoleName("ROLE_ADMIN").get());
         userRepository.save(user1);
-
     }
 }
