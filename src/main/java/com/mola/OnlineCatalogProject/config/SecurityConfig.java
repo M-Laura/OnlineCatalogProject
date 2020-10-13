@@ -3,13 +3,10 @@ package com.mola.OnlineCatalogProject.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -21,7 +18,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private DatabaseUserDetailsService databaseUserDetailsService;
 
 
-//    @Autowired
+    //    @Autowired
 //    public void configureGlobal(AuthenticationManagerBuilder authenticationMgr) throws Exception {
 //        authenticationMgr.inMemoryAuthentication()
 //                .withUser("user").password("user").authorities("ROLE_USER")
@@ -40,14 +37,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/register").permitAll()
                 .antMatchers("/").permitAll()
-                .antMatchers( "/userValidation" ).permitAll()
+                .antMatchers("/userValidation").permitAll()
 
 
                 .antMatchers("/index").permitAll()
-//                .antMatchers("/admin**").access("hasRole('ROLE_ADMIN')")
-//                .antMatchers("/student/**").access("hasRole('ROLE_STUDENT')")
-//                .antMatchers("/professor/**").access("hasRole('ROLE_PROFESSOR')")
 
+                .antMatchers("/admin**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/delete**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/professor**").access("hasRole('ROLE_ADMIN', 'ROLE_PROFESSOR')")
+                .antMatchers("/edit**").access("hasRole('ROLE_ADMIN', 'ROLE_PROFESSOR')")
+                .antMatchers("/add**").access("hasRole('ROLE_ADMIN', 'ROLE_PROFESSOR')")
+                .antMatchers("/student**").access("hasRole('ROLE_ADMIN', 'ROLE_PROFESSOR', 'ROLE_STUDENT')")
+                .antMatchers("/schedule**").access("hasRole('ROLE_ADMIN', 'ROLE_PROFESSOR', 'ROLE_STUDENT')")
                 .anyRequest().authenticated()
 
                 .and()

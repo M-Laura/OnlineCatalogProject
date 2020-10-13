@@ -34,17 +34,17 @@ public class DatabaseUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        log.info("Username " + userName);
-        Optional<PendingUser> optional = pendingUserRepository.findByUsername(userName);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        log.info("Username " + username);
+        Optional<PendingUser> optional = pendingUserRepository.findByUsername(username);
 
         if (optional.isPresent()) {
             log.info(optional.get().getActivationCode());
-            throw new UsernameNotFoundException(userName);
+            throw new UsernameNotFoundException(username);
         }
 
-        User user = userRepository.findByEmail(userName)
-                .orElseThrow(() -> new UsernameNotFoundException("Email " + userName + " not found"));
+        User user = userRepository.findByEmailAddress(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Email " + username + " not found"));
         return new CustomUserDetails(user);
     }
 

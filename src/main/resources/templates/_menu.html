@@ -1,28 +1,31 @@
-<nav th:fragment="menu_nav" xmlns:th="http://www.thymeleaf.org">
+<nav th:fragment="menu_nav" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <script>
      $(document).ready(function(){
         $('.sidenav').sidenav();
      });
 </script>
-    <div class="nav-wrapper  LightSeaGreen lighten-3">
+    <div class="nav-wrapper teal">
         <a class="right" style="margin-right:10px;" th:href="@{/logout}">Logout</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
             <li><a th:href="@{/}">Home</a></li>
             <li><a th:href="@{/allstudents}">Students</a></li>
             <li><a th:href="@{/allprofessors}">Professors</a></li>
+           <li><a th:href="@{/upload}">School units</a></li>
             <li><a th:href="@{/allschoolgroups}">School groups</a></li>
             <li><a th:href="@{/schedule}">Schedule</a></li>
-            <li><a th:href="@{/upload}">Upload form</a></li>
+            <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin}">Admin</a></li>
+            ​
         </ul>
     </div>
     <ul  xmlns:th="http://www.thymeleaf.org" class="sidenav" id="mobile-demo">
         <li><a th:href="@{/}">Home</a></li>
         <li><a th:href="@{/allstudents}">Students</a></li>
         <li><a th:href="@{/allprofessors}">Professors</a></li>
+        <li><a th:href="@{/upload}">School units</a></li>
         <li><a th:href="@{/allschoolgroups}">School groups</a></li>
         <li><a th:href="@{/schedule}">Schedule</a></li>
-        <li><a th:href="@{/upload}">Upload form</a></li>
+        <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin}">Admin</a></li>
+        ​
     </ul>
 </nav>
-

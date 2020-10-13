@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    ​
+    <!-- Compiled and minified JavaScript -->
+    <script type="text/javascript"
+            src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    ​
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <title>Students view</title>
+    ​
+    <nav th:insert="_menu.html::menu_nav">
+    </nav>
+</head>
+<body>
+<div class="container">
+    <h1>Users</h1>
+    <a th:href="@{/adduser}">
+        <i class="small material-icons">add</i>
+    </a>
+    <table>
+        <thead>
+        <tr>
+            <td>
+                User id
+            </td>
+            <td>
+                Username
+            </td>
+            <td>
+                Role
+            </td>
+            <td>Action</td>
+        </tr>
+        </thead>
+        <tbody th:each="s : ${users}">
+        ​
+        <tr>
+            <td th:text="${s.userId}"></td>
+            <td th:text="${s.username}"></td>
+            <td th:text="${s.role.roleName}"></td>
+            <td ></td>
+            <td>
+                                <a th:href="@{/editstudent/{id}(id = ${s.studentId})}">
+                                    <i class="small material-icons">create</i>
+                                </a>
+                                <a th:href="@{/deletestudent/{id}(id = ${s.studentId})}">
+                                    <i class="small material-icons" onclick="myFunction()">delete</i>
+                                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+function myFunction() {
+ confirm("Are U sure??????")
+}
+</script>
+</body>
+</html>

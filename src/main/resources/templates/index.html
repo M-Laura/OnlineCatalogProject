@@ -21,16 +21,17 @@
     <title>Online Catalog</title>
     <script>
      $(document).ready(function(){
-     $('.slider').slider();
+     $('.slider').slider({
+     indicators: true,
+     height: 500,
+     transition: 500,
+     interval: 6000
+      });
      });
-
 
     </script>
 
-
-    <nav th:insert="_menu.html::menu_nav">
-    </nav>
-
+    <nav th:insert="_menu.html::menu_nav"></nav>
 
 </head>
 <body>
@@ -38,51 +39,87 @@
 
 body{
   background-image: url('https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80');
-  background-position: left;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
+  padding-bottom: 10%;
 }
 
 <!--background-img{-->
 <!--  opacity: 0.3;-->
 <!--}-->
 
-
 form label{
 font-size: 20px;
 color: black;
 }
 
+form button{
+background-color: teal;
+color: black;
+button-size: large;
+}
+
+<!--h1{-->
+<!--font-family: Impact, Charcoal, sans-serif;-->
+<!--}-->
+
+h3{
+<!--font-family: Impact, Charcoal, sans-serif;-->
+font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+color: black;
+}
+
+.slider .slides li img {
+    max-width: 100%;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+}
+
+
 </style>
 <div class="slider">
     <ul class="slides">
         <li>
-            <img src="https://lorempixel.com/580/250/nature/1"> <!-- random image -->
+            <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80">
+            <!-- random image -->
             <div class="caption center-align">
-                <h3>This is our big Tagline!</h3>
-                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                <h3>Online Catalogue</h3>
+
             </div>
         </li>
         <li>
-            <img src="https://lorempixel.com/580/250/nature/2"> <!-- random image -->
-            <div class="caption left-align">
-                <h3>Left Aligned Caption</h3>
-                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-            </div>
-        </li>
-        <li>
-            <img src="https://lorempixel.com/580/250/nature/3"> <!-- random image -->
+            <img src="https://images.unsplash.com/photo-1517673132405-a56a62b18caf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1056&q=80">
+            <!-- random image -->
             <div class="caption right-align">
-                <h3>Right Aligned Caption</h3>
-                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                <h3>Online catalogue </br>is an online grading system </br>that allows faculty to manage </br>class grades and submit
+                    grades</h3>
+                <!--                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>-->
             </div>
         </li>
         <li>
-            <img src="https://lorempixel.com/580/250/nature/4"> <!-- random image -->
-            <div class="caption center-align">
-                <h3>This is our big Tagline!</h3>
-                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            <img src="https://images.unsplash.com/photo-1585570796212-2af28ee5c118?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1078&q=80">
+            <!-- random image -->
+            <!--            <div class="caption right-align">-->
+            <!--                <h3>Easy to use</h3>-->
+            <!--&lt;!&ndash;                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>&ndash;&gt;-->
+            <!--            </div>-->
+        </li>
+        <li>
+            <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=800">
+            <!-- random image -->
+            <div class="caption left-align">
+                <h3>User friendly</h3>
+                <!--                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>-->
+            </div>
+        </li>
+        <li>
+            <img src="https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80">
+            <!-- random image -->
+            <div class="caption right-align">
+                <h3>Created by</br> Moisii Laura and Radoi Giorgiana</h3>
+                <!--                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>-->
             </div>
         </li>
     </ul>
@@ -94,15 +131,15 @@ color: black;
                 <h1>Login</h1>
                 <div class="form">
                     <form th:action="@{/login}" method="post">
-                        <label for="username">Username</label>
+                        <label for="username">Email</label>
                         <input type="text" id="username" name="username" required>
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password" required>
 
-                        <button type="submit" value="Login">Login</button>
-                        <!--            <p>Not registered?-->
-                        <!--                <a th:href="@{/register}">Register</a>-->
-                        <!--            </p>-->
+                        <button type="submit" value="Login" onclick="myFunction()">Login</button>
+                        <!--                                    <p>Not registered?-->
+                        <!--                                        <a th:href="@{/register}">Register</a>-->
+                        <!--                                    </p>-->
 
                     </form>
                 </div>
@@ -130,6 +167,14 @@ color: black;
     </div>
 </div>
 </div>
+<script>
+function myFunction() {
+ confirm("Login Successfully")
+}
 
+</script>
 </body>
 </html>
+
+<!--https://images.unsplash.com/photo-1585570796212-2af28ee5c118?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1078&q=80-->
+<!--https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80-->

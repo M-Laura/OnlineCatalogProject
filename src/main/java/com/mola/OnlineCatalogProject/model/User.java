@@ -27,7 +27,7 @@ public class User {
 //    @Column(name = "last_name")
 //    private String lastName;
 
-    private String email;
+    private String emailAddress;
 
     private String password;
 
