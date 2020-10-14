@@ -20,7 +20,7 @@ public class AdminController {
 
         List<User> users = userRepository.findAll();
         model.addAttribute("users", users);
-        return "showallusers";
+        return "admin/showallusers";
     }
 }
 
