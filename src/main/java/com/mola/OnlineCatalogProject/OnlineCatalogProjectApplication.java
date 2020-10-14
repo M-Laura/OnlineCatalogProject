@@ -52,17 +52,17 @@ public class OnlineCatalogProjectApplication implements CommandLineRunner {
 //      role.setRoleName("ROLE_USER");
 //      roleRepository.save(role);
 
-        for (PendingUser p : pendingUserRepository.findAll()
-        ) {
-            pendingUserRepository.delete(p);
-        }
+//        for (PendingUser p : pendingUserRepository.findAll()
+//        ) {
+//            pendingUserRepository.delete(p);
+//        }
         User user = userRepository.findByUsername("laura").get();
         user.setEmailAddress("laura93.m@yahoo.com");
         userRepository.save(user);
 
-        User user1 = userRepository.findByUsername("giorgiana").get();
-        user1.setEmailAddress("testmail.java20@gmail.com");
-        userRepository.save(user1);
+//        User user1 = userRepository.findByUsername("giorgiana").get();
+//        user1.setEmailAddress("testmail.java20@gmail.com");
+//        userRepository.save(user1);
 
 //        for (User user : userRepository.findAll()
 //        ) {
@@ -79,7 +79,7 @@ public class OnlineCatalogProjectApplication implements CommandLineRunner {
 		user.setRole(roleRepository.findByRoleName("ROLE_ADMIN").get());
 		userRepository.save(user);
 
-        user1.setRole(roleRepository.findByRoleName("ROLE_ADMIN").get());
-        userRepository.save(user1);
+//        user1.setRole(roleRepository.findByRoleName("ROLE_ADMIN").get());
+//        userRepository.save(user1);
     }
 }
