@@ -45,19 +45,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/index").permitAll()
                 .antMatchers("/admin**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/edit**").access("hasAnyRole('ROLE_ADMIN', 'ROLE_PROFESSOR')")
-                .antMatchers("/student**").access("hasRole('ROLE_STUDENT')")
 
-//                .antMatchers("/student/**").access("hasRole('ROLE_STUDENT')")
-//                .antMatchers("/professor/**").access("hasRole('ROLE_PROFESSOR')")
-
-
-                .antMatchers("/admin**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/delete**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/professor**").access("hasRole('ROLE_ADMIN', 'ROLE_PROFESSOR')")
                 .antMatchers("/edit**").access("hasRole('ROLE_ADMIN', 'ROLE_PROFESSOR')")
                 .antMatchers("/add**").access("hasRole('ROLE_ADMIN', 'ROLE_PROFESSOR')")
                 .antMatchers("/student**").access("hasRole('ROLE_ADMIN', 'ROLE_PROFESSOR', 'ROLE_STUDENT')")
-                .antMatchers("/schedule**").access("hasRole('ROLE_ADMIN', 'ROLE_PROFESSOR', 'ROLE_STUDENT')")
+//                .antMatchers("/schedule**").access("hasRole('ROLE_ADMIN', 'ROLE_PROFESSOR', 'ROLE_STUDENT')")
                 .anyRequest().authenticated()
 
                 .and()
