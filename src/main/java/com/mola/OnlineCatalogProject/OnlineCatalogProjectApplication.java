@@ -14,6 +14,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+//import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
+
 @SpringBootApplication
 public class OnlineCatalogProjectApplication implements CommandLineRunner {
 
@@ -33,6 +35,11 @@ public class OnlineCatalogProjectApplication implements CommandLineRunner {
 
     @Autowired
     private PendingUserRepository pendingUserRepository;
+
+//    @Bean
+//    public SpringSecurityDialect securityDialect() {
+//        return new SpringSecurityDialect();
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(OnlineCatalogProjectApplication.class, args);
