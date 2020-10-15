@@ -36,6 +36,7 @@ public class OnlineCatalogProjectApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
         SpringApplication.run(OnlineCatalogProjectApplication.class, args);
+//        scene.getStylesheets().add(getClass().getResource("index.css").toExternalForm());
     }
 
     @Override
