@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/userValidation").permitAll()
                 .antMatchers("/index").permitAll()
-                .anyRequest().authenticated()
+
 
 
                 .antMatchers("/admin**").access("hasRole('ROLE_ADMIN')")
@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/add**").access("hasRole('ROLE_ADMIN', 'ROLE_PROFESSOR')")
                 .antMatchers("/student**").access("hasRole('ROLE_ADMIN', 'ROLE_PROFESSOR', 'ROLE_STUDENT')")
 //                .antMatchers("/schedule**").access("hasRole('ROLE_ADMIN', 'ROLE_PROFESSOR', 'ROLE_STUDENT')")
-
+                .anyRequest().authenticated()
 
                 .and()
                 .formLogin().loginPage("/login").permitAll()
