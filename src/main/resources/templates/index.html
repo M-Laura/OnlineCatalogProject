@@ -30,71 +30,14 @@
      });
 
 
+
     </script>
 
     <nav th:insert="_menu.html::menu_nav"></nav>
-    <link rel="stylesheet" type="text/css" href="src/main/resources/static/index.css"/>
+    <!--    <link rel="stylesheet" type="text/css" href="D:\Proiecte\OnlineCatalogProject\OnlineCatalogProject\src\main\resources\static\index.css"/>-->
 </head>
+
 <body>
-
-
-<!--<style>-->
-
-<!--body{-->
-<!--  background-image: url('https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80');-->
-<!--  background-repeat: no-repeat;-->
-<!--  background-attachment: fixed;-->
-<!--  background-size: 100% 100%;-->
-<!--  padding-bottom: 40%;-->
-<!--}-->
-
-<!--&lt;!&ndash;background-img{&ndash;&gt;-->
-<!--&lt;!&ndash;  opacity: 0.3;&ndash;&gt;-->
-<!--&lt;!&ndash;}&ndash;&gt;-->
-
-<!--form label{-->
-<!--font-size: 20px;-->
-<!--color: black;-->
-<!--}-->
-
-<!--form button{-->
-<!--background-color: teal;-->
-<!--color: black;-->
-<!--button-size: large;-->
-<!--}-->
-
-<!--&lt;!&ndash;h1{&ndash;&gt;-->
-<!--&lt;!&ndash;font-family: Impact, Charcoal, sans-serif;&ndash;&gt;-->
-<!--&lt;!&ndash;}&ndash;&gt;-->
-
-<!--h3{-->
-<!--&lt;!&ndash;font-family: Impact, Charcoal, sans-serif;&ndash;&gt;-->
-<!--font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;-->
-<!--color: black;-->
-<!--}-->
-
-<!--.slider .slides li img {-->
-<!--    max-width: 100%;-->
-<!--    height: 500px;-->
-<!--    background-size: cover;-->
-<!--    background-position: center;-->
-<!--}-->
-<!--a.one {-->
-<!-- text-align: center;-->
-<!-- font-size: 40px;-->
-<!-- font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;-->
-<!-- color:black;-->
-<!-- background-color: teal;-->
-<!-- display: inline-block;-->
-<!-- margin: 30px;-->
-<!--padding: 0px 10px;-->
-<!--}-->
-
-<!--a.one:hover {-->
-<!--  color: hotpink;-->
-<!--}-->
-
-<!--</style>-->
 <div class="slider">
     <ul class="slides">
         <li>
@@ -102,7 +45,6 @@
             <!-- random image -->
             <div class="caption center-align">
                 <h3>Online Catalogue</h3>
-
             </div>
         </li>
         <li>
@@ -128,7 +70,6 @@
             <!-- random image -->
             <div class="caption left-align">
                 <h3>User friendly</h3>
-                <!--                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>-->
             </div>
         </li>
         <li>
@@ -145,8 +86,7 @@
     <div class="container" align="center">
     <span style="cursor:pointer">
     <a class="one" th:href=@{/login}>Login</a>
-
-    <a class="one" th:href=@{/register}>Register</a>
+        <a class="one" th:href=@{/register}>Register</a>
 </span>
     </div>
     <!--    <div class="transbox">-->
@@ -169,36 +109,72 @@
     <!--                </div>-->
     <!--            </div>-->
 
-    <!--            <div class="container">-->
-    <!--                <h1>Register</h1>-->
-    <!--                <div class="form">-->
-    <!--                    <form th:action="@{/register}" method="post">-->
-    <!--                        <label for="username">Username</label>-->
-    <!--                        <input type="text" id="username1" name="username" required>-->
-
-    <!--                        <label for="password">Password</label>-->
-    <!--                        <input type="password" id="password2" name="password" required>-->
-
-    <!--                        <label for="emailAddress">Email</label>-->
-    <!--                        <input type="email" id="emailAddress" name="emailAddress" required>-->
-
-    <!--                        <button type="submit" value="Register">Register</button>-->
-
-    <!--                    </form>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--</div>-->
 </div>
+<style>
+body{
+background-image: url('https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80');
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: 100% 100%;
+padding-bottom: 40%;
+}
+
+<!--background-img{-->
+<!--  opacity: 0.3;-->
+<!--}-->
+
+form label{
+font-size: 20px;
+color: black;
+}
+
+form button{
+background-color: teal;
+color: black;
+button-size: large;
+}
+
+<!--h1{-->
+<!--font-family: Impact, Charcoal, sans-serif;-->
+<!--}-->
+
+h3{
+<!--font-family: Impact, Charcoal, sans-serif;-->
+font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+color: black;
+}
+
+.slider .slides li img {
+    max-width: 100%;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+}
+
+a.one {
+text-align: center;
+font-size: 40px;
+font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+color:black;
+background-color: teal;
+display: inline-block;
+margin: 30px;
+padding: 0px 10px;
+}
+
+a.one:hover {
+  color: hotpink;
+}
+
+
+
+</style>
+</body>
+</html>
+
 <!--<script>-->
 <!--function myFunction() {-->
 <!-- confirm("Login Successfully")-->
 <!--}-->
 
 <!--</script>-->
-</body>
-</html>
-
-<!--https://images.unsplash.com/photo-1585570796212-2af28ee5c118?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1078&q=80-->
-<!--https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80-->

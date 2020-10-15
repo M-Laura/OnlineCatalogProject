@@ -14,7 +14,7 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta charset="UTF-8">
-    <title>Students view</title>
+    <title>Users</title>
     ​
     <nav th:insert="_menu.html::menu_nav">
     </nav>
@@ -22,7 +22,7 @@
 <body>
 <div class="container">
     <h1>Users</h1>
-    <a th:href="@{/adduser}">
+    <a th:href="@{/adduser}" class="btn-floating btn-large pulse left teal">
         <i class="small material-icons">add</i>
     </a>
     <table>
@@ -46,23 +46,39 @@
             <td th:text="${s.userId}"></td>
             <td th:text="${s.username}"></td>
             <td th:text="${s.role.roleName}"></td>
-            <td ></td>
+
             <td>
-                                <a th:href="@{/editstudent/{id}(id = ${s.studentId})}">
-                                    <i class="small material-icons">create</i>
-                                </a>
-                                <a th:href="@{/deletestudent/{id}(id = ${s.studentId})}">
-                                    <i class="small material-icons" onclick="myFunction()">delete</i>
-                                </a>
+                <a th:href="@{/editstudent/{id}(id = ${s.studentId})}" class="btn-floating teal">
+                    <i class="small material-icons">edit</i>
+                </a>
+                <a th:href="@{/deletestudent/{id}(id = ${s.studentId})}" class="btn-floating teal">
+                    <i class="small material-icons" onclick="return confirm('Are you sure you want to delete this user?')">delete</i>
+                </a>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
-<script>
-function myFunction() {
- confirm("Are U sure??????")
+<style>
+body{
+  background-image: url('https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  padding-bottom: 40%;
 }
-</script>
+
+h1{
+<!--font-family: Impact, Charcoal, sans-serif;-->
+font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+color: black;
+}
+
+table{
+font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+color: black;
+font-size: 18px;
+}
+</style>
 </body>
 </html>

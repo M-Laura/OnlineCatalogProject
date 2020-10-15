@@ -22,7 +22,7 @@
 <body>
 <div class="container">
     <h1>Professors</h1>
-    <a th:href="@{/addprofessor}">
+    <a th:href="@{/addprofessor}" class="btn-floating btn-large pulse left teal">
         <i class="small material-icons">add</i>
     </a>
     <table>
@@ -32,10 +32,10 @@
                 Professor id
             </td>
             <td>
-                Professor first name
+                First name
             </td>
             <td>
-                Professor last name
+                Last name
             </td>
             <td>Action</td>
         </tr>
@@ -47,10 +47,10 @@
             <td th:text="${p.firstName}"></td>
             <td th:text="${p.lastName}"></td>
             <td>
-                <a th:href="@{/editprofessor/{id}(id = ${p.id})}">
-                    <i class="small material-icons">create</i>
+                <a th:href="@{/editprofessor/{id}(id = ${p.id})}" class="btn-floating teal">
+                    <i class="small material-icons">edit</i>
                 </a>
-                <a th:href="@{/deleteprofessor/{id}(id = ${p.id})}">
+                <a th:href="@{/deleteprofessor/{id}(id = ${p.id})}" class="btn-floating teal">
                     <i class="small material-icons">delete</i>
                 </a>
             </td>
@@ -58,5 +58,30 @@
         </tbody>
     </table>
 </div>
+<style>
+body{
+  background-image: url('https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  padding-bottom: 40%;
+}
+
+h1{
+<!--font-family: Impact, Charcoal, sans-serif;-->
+font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+color: black;
+}
+
+table{
+font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+color: black;
+font-size: 18px;
+}
+
+<!--a: hover{-->
+<!--color: black;-->
+<!--}-->
+</style>
 </body>
 </html>

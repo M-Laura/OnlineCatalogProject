@@ -22,7 +22,7 @@
 <body>
 <div class="container">
     <h1>Students</h1>
-    <a >th:href="@{/addstudent}"
+    <a th:href="@{/addstudent}" class="btn-floating btn-large pulse left teal">
         <i class="small material-icons">add</i>
     </a>
     <table>
@@ -46,22 +46,43 @@
             <td th:text="${s.studentId}"></td>
             <td th:text="${s.firstName}"></td>
             <td th:text="${s.lastName}"></td>
+
             <td>
-                <a th:href="@{/editstudent/{id}(id = ${s.studentId})}">
-                    <i class="small material-icons">create</i>
+                <a th:href="@{/editstudent/{id}(id = ${s.studentId})}" class="btn-floating teal">
+                    <i class="small material-icons">edit</i>
                 </a>
-                <a th:href="@{/deletestudent/{id}(id = ${s.studentId})}">
-                    <i class="small material-icons" onclick="myFunction()">delete</i>
+                <a th:href="@{/deletestudent/{id}(id = ${s.studentId})}" class="btn-floating teal">
+                    <i class="small material-icons" onclick="return confirm('Are you sure you want to delete this student?')">delete</i>
                 </a>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
-<script>
-function myFunction() {
- confirm("Are U sure??????")
+<style>
+body{
+  background-image: url('https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  padding-bottom: 40%;
 }
-</script>
+
+h1{
+<!--font-family: Impact, Charcoal, sans-serif;-->
+font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+color: black;
+}
+
+table{
+font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+color: black;
+font-size: 18px;
+}
+
+<!--a: hover{-->
+<!--color: black;-->
+<!--}-->
+</style>
 </body>
 </html>
